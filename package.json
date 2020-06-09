@@ -1,0 +1,9 @@
+{
+  "name": "node-express-sequelize-jwt",
+  "version": "1.0.0",
+  "main": "zserver.js",
+  "repository": "https://github.com/roryjarrard/node-express-sequelize-jwt.git",
+  "author": "Rory Jarrard",
+  "license": "MIT",
+  "private": false
+}
