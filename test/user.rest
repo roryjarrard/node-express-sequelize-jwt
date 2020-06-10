@@ -1,4 +1,5 @@
 GET http://localhost:5000/api/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3RfbmFtZSI6IkppbGwiLCJsYXN0X25hbWUiOiJKb25lcyIsImVtYWlsIjoiYm9iMkBib2IuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkbzdKYUkzdDBzc3duMVhtOWMxVGppT0hEckdTdjVqYzh0cDNmRHU4Sy5IenFsLzhhSVFFRVciLCJ1cGRhdGVkQXQiOiIyMDIwLTA2LTEwVDIxOjE0OjE1Ljk5NFoiLCJjcmVhdGVkQXQiOiIyMDIwLTA2LTEwVDIxOjE0OjE1Ljk5NFoiLCJpYXQiOjE1OTE4MjM2NTZ9.lptQI07MfAJ-wax5ihHI8F_pbW3XsCwLCFt-dFHBN-c
 
 ###
 
@@ -12,7 +13,7 @@ Content-Type: application/json
 {
   "first_name": "Jill",
   "last_name": "Jones",
-  "email": "bob@bob.com",
+  "email": "bob2@bob.com",
   "password": "banana"
 }
 

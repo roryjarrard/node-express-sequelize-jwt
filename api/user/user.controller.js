@@ -49,6 +49,9 @@ module.exports = {
                 return res.status(201).json({accessToken})
             })
             .catch((error) => {
+                if (error.errors && error.errors.length) {
+                    error = error.errors[0].message
+                }
                 return res.status(500).json({message: 'error creating user', error})
             })
     }
