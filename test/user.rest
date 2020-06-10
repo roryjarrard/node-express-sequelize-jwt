@@ -10,8 +10,8 @@ POST http://localhost:5000/api/user/
 Content-Type: application/json
 
 {
-  "first_name": "Bob",
-  "last_name": "Smith",
+  "first_name": "Jill",
+  "last_name": "Jones",
   "email": "bob@bob.com",
   "password": "banana"
 }

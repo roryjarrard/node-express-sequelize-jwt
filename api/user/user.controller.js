@@ -1,5 +1,6 @@
 const db = require('../database')
 const { genSaltSync, hashSync } = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 module.exports = {
     getUsers: async (req, res) => {
@@ -42,7 +43,10 @@ module.exports = {
             password: hashSync(password, salt)
         })
             .then((response) => {
-                return res.status(201).json({user: response.dataValues})
+                // Now create a web token
+                const user = response.dataValues
+                const accessToken = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
+                return res.status(201).json({accessToken})
             })
             .catch((error) => {
                 return res.status(500).json({message: 'error creating user', error})
