@@ -1,3 +1,19 @@
 GET http://localhost:5000/api/user/
 
 ###
+
+GET http://localhost:5000/api/user/2
+
+###
+
+POST http://localhost:5000/api/user/
+Content-Type: application/json
+
+{
+  "first_name": "Bob",
+  "last_name": "Smith",
+  "email": "bob@bob.com",
+  "password": "banana"
+}
+
+###
