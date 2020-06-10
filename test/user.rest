@@ -18,3 +18,13 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:5000/api/user/login
+Content-Type: application/json
+
+{
+  "email": "roryjarrard@gmail.com",
+  "password": "silver"
+}
+
+###
