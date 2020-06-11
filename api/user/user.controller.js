@@ -1,12 +1,12 @@
 const db = require('../database')
-const { genSaltSync, hashSync } = require('bcrypt')
+const {genSaltSync, hashSync} = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 module.exports = {
     getUsers: async (req, res) => {
 
-        db.User.findAll()
+        db.User.findAll({attributes: {exclude: ['password']}})
             .then(users => {
                 res.json({
                     users
@@ -22,7 +22,7 @@ module.exports = {
 
     getUser: async (req, res) => {
         const id = req.params.id
-        db.User.findByPk(id)
+        db.User.findByPk(id, {attributes: {exclude: ['password']}})
             .then((user) => {
                 if (!user) {
                     return res.status(404).json({message: 'User not found'})
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     createUser: (req, res) => {
-        const { first_name, last_name, email, password } = req.body
+        const {first_name, last_name, email, password} = req.body
         const salt = genSaltSync(10)
         db.User.create({
             first_name,
@@ -45,7 +45,7 @@ module.exports = {
         })
             .then((response) => {
                 // Now create a web token
-                const user = response.dataValues
+                const user = response.get({plain: true})
                 const accessToken = jwt.sign(user, process.env.JWT_ACCESS_SECRET)
                 return res.status(201).json({accessToken})
             })
@@ -58,15 +58,19 @@ module.exports = {
     },
 
     login: async (req, res) => {
-        const { email, password } = req.body
+        const {email, password} = req.body
+        console.log('HERE')
 
-        db.User.findOne({where: {email}})
+        db.User.findOne({
+            where: { email }
+        })
             .then((response) => {
                 if (!response) {
                     return res.status(401).json({message: 'invalid credentials'})
                 }
 
-                const user = response.dataValues
+                const user = response.get({plain: true})
+
                 const passwordIsValid = bcrypt.compareSync(password, user.password)
                 if (!passwordIsValid) {
                     return res.status(401).json({
